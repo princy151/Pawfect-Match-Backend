@@ -28,7 +28,9 @@ const adopter = require("./routes/adopter");
 const shelter = require("./routes/shelter");
 const pet = require("./routes/pets");
 const shop = require("./routes/shop");
-
+const cart = require("./routes/cart");
+const adoption = require("./routes/adoption");
+const fav = require("./routes/fav");
 
 // Body parser
 app.use(express.json());
@@ -65,6 +67,9 @@ app.use("/api/v1/adopter", adopter);
 app.use("/api/v1/shelter", shelter);
 app.use("/api/v1/pet", pet);
 app.use("/api/v1/shop", shop);
+app.use("/api/v1/cart", cart);
+app.use("/api/v1/adoption", adoption);
+app.use("/api/v1/fav", fav);
 
 
 

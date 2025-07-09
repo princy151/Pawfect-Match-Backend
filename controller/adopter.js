@@ -99,7 +99,7 @@ exports.forgotPassword = asyncHandler(async (req, res) => {
     console.log('Email pass exists:', !!process.env.EMAIL_PASS);
 
     const mailOptions = {
-      from: '"PawPal Support" <no-reply@pawpal.com>',
+      from: '"PawfectMatch Support" <no-reply@pawpal.com>',
       to: email,
       subject: 'Password Reset Request',
       html: `<p>Click to reset password: <a href="${resetUrl}">${resetUrl}</a></p>`,
@@ -189,4 +189,19 @@ exports.resetPassword = asyncHandler(async (req, res) => {
   await user.save();
 
   res.status(200).json({ success: true, message: "Password updated successfully" });
+});
+
+// @desc Get Adopter by Email
+// @route GET /api/v1/adopter/profile/email/:email
+exports.getProfileByEmail = asyncHandler(async (req, res) => {
+  const adopter = await Adopter.findOne({ email: req.params.email }).select('-password');
+
+  if (!adopter) {
+    return res.status(404).json({ message: 'Adopter not found' });
+  }
+
+  res.status(200).json({
+    success: true,
+    data: adopter,
+  });
 });

@@ -115,7 +115,7 @@ exports.forgotPassword = asyncHandler(async (req, res) => {
     console.log('Email pass exists:', !!process.env.EMAIL_PASS);
 
     const mailOptions = {
-      from: '"PawPal Support" <no-reply@pawpal.com>',
+      from: '"Pawfect Match Support" <no-reply@pawpal.com>',
       to: email,
       subject: 'Password Reset Request',
       html: `<p>Click to reset password: <a href="${resetUrl}">${resetUrl}</a></p>`,
