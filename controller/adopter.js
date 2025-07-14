@@ -205,3 +205,22 @@ exports.getProfileByEmail = asyncHandler(async (req, res) => {
     data: adopter,
   });
 });
+
+// @desc    Update Adopter Profile
+// @route   PUT /api/v1/adopter/update/:id
+exports.updateProfile = asyncHandler(async (req, res) => {
+  const adopter = await Adopter.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  }).select('-password');
+
+  if (!adopter) {
+    return res.status(404).json({ message: 'Adopter not found' });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'Profile updated successfully',
+    data: adopter,
+  });
+});

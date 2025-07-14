@@ -53,6 +53,11 @@ exports.login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
 
+  // ✅ Check if the shelter user is verified
+  if (!user.isVerified) {
+    return res.status(403).json({ message: 'Account not verified. Please contact the shelter' });
+  }
+
   const token = user.getSignedJwtToken();
 
   res.status(200).json({

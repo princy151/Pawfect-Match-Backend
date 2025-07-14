@@ -19,12 +19,12 @@ const productSchema = new mongoose.Schema({
   discount: {
     type: String,
     default: "0%",
-    // validate: {
-    //   validator: function (v) {
-    //     return /^-\d+%$/.test(v); // Example: "-10%"
-    //   },
-    //   message: props => `${props.value} is not a valid discount format! Use '-10%'`,
-    // },
+    validate: {
+      validator: function (v) {
+        return /^-\d+%$/.test(v); // Example: "-10%"
+      },
+      message: props => `${props.value} is not a valid discount format! Use '-10%'`,
+    },
   },
   image: {
     type: String,

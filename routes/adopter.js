@@ -9,6 +9,7 @@ const {
   resetPassword,
   verifyResetToken,
   getProfileByEmail,
+  updateProfile
 } = require("../controller/adopter");
 
 router.post("/register", register);
@@ -18,5 +19,6 @@ router.post("/forgotpassword", forgotPassword);
 router.get("/resetpassword/:token", verifyResetToken);
 router.post("/resetpassword/:token", resetPassword);
 router.get("/profile/email/:email", getProfileByEmail);
+router.put("/update/:id", updateProfile);
 
 module.exports = router;

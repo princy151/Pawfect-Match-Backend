@@ -79,11 +79,22 @@ exports.removeFromCart = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: 'Cart not found' });
   }
 
-  cart.items = cart.items.filter(
-    (item) => item.product.toString() !== productId
-  );
+  console.log("Cart before deletion:", cart.items.map(i => ({
+    product: i.product._id?.toString?.() || i.product.toString?.(),
+    quantity: i.quantity
+  })));
+
+  cart.items = cart.items.filter((item) => {
+    const itemProductId = item.product._id ? item.product._id.toString() : item.product.toString();
+    return itemProductId !== productId;
+  });
 
   await cart.save();
+
+  console.log("Cart after deletion:", cart.items.map(i => ({
+    product: i.product._id?.toString?.() || i.product.toString?.(),
+    quantity: i.quantity
+  })));
 
   res.status(200).json({
     success: true,

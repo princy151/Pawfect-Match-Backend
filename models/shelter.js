@@ -39,7 +39,7 @@ const shelterUserSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  isAdmin: {
+  isVerified: {
     type: Boolean,
     default: false,
   },
